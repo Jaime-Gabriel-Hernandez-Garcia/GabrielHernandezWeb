@@ -694,14 +694,16 @@ img {
     position: relative;
     background-color: var(--container-color);
     padding: 3.5rem .5rem 1.25rem 1.5rem;
-    border-radius: .5rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, .15);
-    transition: box-shadow .3s ease, transform .3s ease;
+    border-radius: .75rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .12);
+    transition: box-shadow .3s ease, transform .3s ease, border-color .3s ease;
+    border: 1px solid transparent;
 }
 
 .services__content:hover {
-    box-shadow: 0 6px 16px rgba(0, 0, 0, .2);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .18);
     transform: translateY(-.25rem);
+    border-color: var(--first-color-lighter);
 }
 
 .services__icon {
@@ -732,7 +734,9 @@ img {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, .5);
+    background-color: rgba(0, 0, 0, .6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -746,10 +750,13 @@ img {
 .services__modal-content {
     position: relative;
     background-color: var(--container-color);
-    padding: 1.5rem;
-    border-radius: .75rem;
-    max-width: 450px;
+    padding: 2rem 1.75rem 1.75rem;
+    border-radius: 1rem;
+    max-width: 480px;
     width: 100%;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, .25);
+    transform: scale(.92);
+    transition: transform .3s ease;
 }
 
 .services__modal-services {
@@ -774,6 +781,12 @@ img {
     font-size: 1.5rem;
     color: var(--first-color);
     cursor: pointer;
+    transition: transform .2s ease, color .2s ease;
+}
+
+.services__modal-close:hover {
+    color: var(--first-color-alt);
+    transform: scale(1.15);
 }
 
 .services__modal-icon {
@@ -786,6 +799,10 @@ img {
 .active-modal {
     opacity: 1;
     visibility: visible;
+}
+
+.active-modal .services__modal-content {
+    transform: scale(1);
 }
 
 /*==================== PORTFOLIO ====================*/
