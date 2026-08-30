@@ -458,9 +458,15 @@ img {
     color: var(--first-color);
 }
 
-.button--link:hover {
+.button--ghost {
     background-color: transparent;
-    color: var(--first-color-alt);
+    border: 2px solid var(--first-color);
+    color: var(--first-color);
+}
+
+.button--ghost:hover {
+    background-color: var(--first-color);
+    color: #fff;
 }
 
 /*==================== ABOUT ====================*/
@@ -502,6 +508,8 @@ img {
 .about__buttons {
     display: flex;
     justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
 }
 
 /*==================== SKILLS ====================*/

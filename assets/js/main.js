@@ -24,6 +24,7 @@ const translations = {
         about_projects: "Completed <br> projects",
         about_companies: "Companies <br> worked",
         about_cv_btn: "Download CV",
+        about_key_btn: "Download Public Key",
 
         skills_title: "Skills",
         skills_subtitle: "My technical level",
@@ -170,6 +171,7 @@ const translations = {
         about_projects: "Proyectos <br> completados",
         about_companies: "Empresas <br> trabajadas",
         about_cv_btn: "Descargar CV",
+        about_key_btn: "Descargar Llave Pública",
 
         skills_title: "Habilidades",
         skills_subtitle: "Mi nivel técnico",
@@ -316,6 +318,7 @@ const translations = {
         about_projects: "Abgeschlossene <br> Projekte",
         about_companies: "Unternehmen <br> gearbeitet",
         about_cv_btn: "Lebenslauf herunterladen",
+        about_key_btn: "Öffentlichen Schlüssel herunterladen",
 
         skills_title: "Fähigkeiten",
         skills_subtitle: "Mein technisches Niveau",
