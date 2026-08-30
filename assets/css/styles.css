@@ -506,7 +506,7 @@ img {
 
 /*==================== SKILLS ====================*/
 .skills__container {
-    row-gap: 0;
+    row-gap: 2rem;
 }
 
 .skills__header {
@@ -855,6 +855,162 @@ img {
     bottom: -2.5rem;
 }
 
+/*==================== HOBBIES ====================*/
+.hobbies__container {
+    gap: 1.5rem;
+    grid-template-columns: repeat(1, 1fr);
+}
+
+.hobbies__content {
+    background-color: var(--container-color);
+    padding: 2.25rem 1.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, .08);
+    transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+    border: 1px solid transparent;
+    text-align: center;
+}
+
+.hobbies__content:hover {
+    transform: translateY(-.35rem);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .15);
+    border-color: var(--first-color-lighter);
+}
+
+.hobbies__icon-box {
+    width: 60px;
+    height: 60px;
+    background-color: var(--first-color-lighter);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.25rem;
+    transition: background-color .3s ease;
+}
+
+.hobbies__content:hover .hobbies__icon-box {
+    background-color: var(--first-color);
+}
+
+.hobbies__icon {
+    font-size: 2rem;
+    color: var(--first-color);
+    transition: color .3s ease;
+}
+
+.hobbies__content:hover .hobbies__icon {
+    color: #fff;
+}
+
+.hobbies__title {
+    font-size: var(--h3-font-size);
+    margin-bottom: var(--mb-0-75);
+    font-weight: var(--font-semi-bold);
+}
+
+.hobbies__description {
+    font-size: var(--small-font-size);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/*==================== CRYPTOGRAPHY ====================*/
+.crypto__container {
+    gap: 1.5rem;
+    grid-template-columns: repeat(1, 1fr);
+}
+
+.crypto__content {
+    background-color: var(--container-color);
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, .08);
+    transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+    border: 1px solid transparent;
+    display: flex;
+    flex-direction: column;
+}
+
+.crypto__content:hover {
+    transform: translateY(-.35rem);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .15);
+    border-color: var(--first-color-lighter);
+}
+
+.crypto__img-box {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.crypto__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .4s ease;
+}
+
+.crypto__content:hover .crypto__img {
+    transform: scale(1.05);
+}
+
+.crypto__badge {
+    position: absolute;
+    bottom: .75rem;
+    left: .75rem;
+    background-color: var(--first-color);
+    color: #fff;
+    font-size: var(--smaller-font-size);
+    font-weight: var(--font-medium);
+    padding: .25rem .75rem;
+    border-radius: .5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .25);
+}
+
+.crypto__data {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.crypto__title {
+    font-size: var(--h3-font-size);
+    margin-bottom: var(--mb-0-75);
+    font-weight: var(--font-semi-bold);
+    color: var(--title-color);
+}
+
+.crypto__description {
+    font-size: var(--small-font-size);
+    color: var(--text-color);
+    line-height: 1.6;
+    margin-bottom: var(--mb-1);
+}
+
+.crypto__fact {
+    margin-top: auto;
+    background-color: var(--input-color);
+    border-left: 3px solid var(--first-color);
+    padding: .75rem 1rem;
+    border-radius: 0 .5rem .5rem 0;
+    display: flex;
+    align-items: flex-start;
+    gap: .5rem;
+    font-size: var(--smaller-font-size);
+    color: var(--text-color);
+    line-height: 1.5;
+}
+
+.crypto__fact-icon {
+    font-size: 1.15rem;
+    color: var(--first-color);
+    flex-shrink: 0;
+    margin-top: .1rem;
+}
+
 /*==================== PROJECT IN MIND ====================*/
 .project {
     text-align: center;
@@ -1189,12 +1345,25 @@ img {
     }
 
     .about__container,
-    .skills__container,
     .portfolio__content,
     .project__container,
     .contact__container,
     .footer__container {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .skills__container {
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 3rem;
+        row-gap: 2.5rem;
+    }
+
+    .skills__container > .skills__content:nth-child(3) {
+        grid-column: 1 / -1;
+        justify-self: center;
+        width: 100%;
+        max-width: calc(50% - 1.5rem);
+        min-width: 280px;
     }
 
     .qualification__sections {
@@ -1267,7 +1436,7 @@ img {
 
     .nav__list {
         display: flex;
-        column-gap: 2rem;
+        column-gap: 1.5rem;
     }
 
     .nav__menu {
@@ -1354,6 +1523,11 @@ img {
 
     .portfolio__content {
         align-items: center;
+    }
+
+    .hobbies__container,
+    .crypto__container {
+        grid-template-columns: repeat(3, 1fr);
     }
 
     .project {

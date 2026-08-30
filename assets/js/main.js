@@ -7,6 +7,8 @@ const translations = {
         nav_qualification: "Qualification",
         nav_services: "Services",
         nav_portfolio: "Portfolio",
+        nav_hobbies: "Hobbies",
+        nav_crypto: "Cryptography",
         nav_contact: "Contact",
 
         home_title: "Hi, I'm Jaime Gabriel",
@@ -40,6 +42,8 @@ const translations = {
         qual_edu_1_sub: "ESCOM — IPN",
         qual_edu_2_title: "Programming Technician",
         qual_edu_2_sub: "CECyT No. 9 \"Juan de Dios Bátiz\" — IPN",
+        qual_edu_3_title: "Secondary Education",
+        qual_edu_3_sub: "Secundaria Diurna No. 141 \"Guillermo González Camarena\"",
         qual_work_1_title: "Web Development Lead",
         qual_work_1_sub: "CONSECAL S.A. de C.V.",
         qual_work_1_date: "Mar 2024 - May 2026",
@@ -81,6 +85,30 @@ const translations = {
         portfolio_p2_desc: "Interactive web application backend that calculates the probability of suffering from chronic diseases using ID3 decision tree classification algorithms.",
         portfolio_p3_title: "CONSECAL Corporate Web & Results Portal",
         portfolio_p3_desc: "Complete redesign and implementation of company website and internal query portal, resulting in a 45% increase in traffic and 20% reduction in customer service response time.",
+
+        hobbies_title: "Hobbies & Interests",
+        hobbies_subtitle: "What I enjoy in my free time",
+        hobby_1_title: "Gym & Fitness",
+        hobby_1_desc: "Dedicated strength training and workout routines that foster discipline, consistency, mental resilience, and a healthy balance with software engineering.",
+        hobby_2_title: "Cinema & Storytelling",
+        hobby_2_desc: "Passionate about cinematic art, narrative structures, psychological thrillers, and science-fiction cinema that stimulate creative problem solving.",
+        hobby_3_title: "Music & Soundtracks",
+        hobby_3_desc: "Enjoying eclectic music genres, ambient soundscapes, and instrumental film scores that provide deep focus and inspiration during intense programming sessions.",
+
+        crypto_title: "Cryptography Facts",
+        crypto_subtitle: "Fascinating historical & modern cryptographic milestones",
+        crypto_badge_1: "Classical Cryptography",
+        crypto_1_title: "The Caesar Cipher (Shift Substitution)",
+        crypto_1_desc: "One of the earliest documented encryption methods in history. Used by Julius Caesar in the 1st century BC to protect military dispatches by shifting each letter in the alphabet by a fixed number of positions (typically 3).",
+        crypto_1_fact: "<strong>Curious fact:</strong> While easily broken today via frequency analysis, it established the foundational concept of monoalphabetic substitution that influenced centuries of tactical ciphers.",
+        crypto_badge_2: "Asymmetric Cryptography",
+        crypto_2_title: "Diffie-Hellman Key Exchange (1976)",
+        crypto_2_desc: "Introduced by Whitfield Diffie and Martin Hellman, this groundbreaking breakthrough solved cryptography's greatest dilemma: how two strangers can securely agree on a shared secret key over a totally public, eavesdropped channel.",
+        crypto_2_fact: "<strong>Curious fact:</strong> Relying on the mathematical hardness of the Discrete Logarithm problem, it is the backbone securing modern HTTPS, TLS/SSL, SSH, and VPN connections worldwide.",
+        crypto_badge_3: "Forensic Cryptanalysis",
+        crypto_3_title: "The Zodiac Killer Ciphers (Z340 & Z408)",
+        crypto_3_desc: "Between 1969 and 1974, the infamous serial killer mailed 4 complex cryptograms composed of homophonic substitution symbols, transposed diagonal grids, and deliberate misdirection to taunt police and newspapers.",
+        crypto_3_fact: "<strong>Curious fact:</strong> The notorious Z340 cipher remained unsolved for 51 years until December 2020, when an international team cracked it using advanced computer search algorithms.",
 
         project_title: "Have a project in mind?",
         project_desc: "Let's collaborate to build robust web systems, intelligent AI applications, and optimized database solutions tailored to your needs.",
@@ -125,6 +153,8 @@ const translations = {
         nav_qualification: "Trayectoria",
         nav_services: "Servicios",
         nav_portfolio: "Portafolio",
+        nav_hobbies: "Pasatiempos",
+        nav_crypto: "Criptografía",
         nav_contact: "Contacto",
 
         home_title: "Hola, soy Jaime Gabriel",
@@ -158,6 +188,8 @@ const translations = {
         qual_edu_1_sub: "ESCOM — IPN",
         qual_edu_2_title: "Técnico en Programación",
         qual_edu_2_sub: "CECyT No. 9 \"Juan de Dios Bátiz\" — IPN",
+        qual_edu_3_title: "Educación Secundaria",
+        qual_edu_3_sub: "Secundaria Diurna No. 141 \"Guillermo González Camarena\"",
         qual_work_1_title: "Líder de Desarrollo Web",
         qual_work_1_sub: "CONSECAL S.A. de C.V.",
         qual_work_1_date: "Mar 2024 - May 2026",
@@ -199,6 +231,30 @@ const translations = {
         portfolio_p2_desc: "Backend interactivo para calcular la probabilidad de padecer enfermedades crónicas utilizando algoritmos de clasificación de árboles de decisión ID3.",
         portfolio_p3_title: "Portal Web y Sistema de Consultas CONSECAL",
         portfolio_p3_desc: "Rediseño completo de plataforma web corporativa y sistema de consultas, logrando 45% más visitas y reduciendo 20% el tiempo de atención.",
+
+        hobbies_title: "Pasatiempos e Intereses",
+        hobbies_subtitle: "Lo que disfruto en mi tiempo libre",
+        hobby_1_title: "Gimnasio y Fitness",
+        hobby_1_desc: "Entrenamiento de fuerza y acondicionamiento constante que forja disciplina, resistencia mental y un balance saludable con el desarrollo de software.",
+        hobby_2_title: "Cine y Narrativa",
+        hobby_2_desc: "Apasionado por el arte cinematográfico, la estructura de tramas complejas, thrillers psicológicos y ciencia ficción que impulsan la creatividad.",
+        hobby_3_title: "Música y Soundtracks",
+        hobby_3_desc: "Exploración de géneros musicales diversos, bandas sonoras de películas y música instrumental para máxima concentración al programar.",
+
+        crypto_title: "Datos de Criptografía",
+        crypto_subtitle: "Hitos fascinantes de la criptografía histórica y moderna",
+        crypto_badge_1: "Criptografía Clásica",
+        crypto_1_title: "El Cifrado César (Sustitución por Desplazamiento)",
+        crypto_1_desc: "Uno de los métodos de cifrado más antiguos documentados. Utilizado por Julio César en el siglo I a.C. para proteger mensajes militares desplazando cada letra del alfabeto un número fijo de posiciones (generalmente 3).",
+        crypto_1_fact: "<strong>Dato curioso:</strong> Aunque hoy es vulnerable al análisis de frecuencias, sentó las bases de la sustitución monoalfabética que moldeó la criptografía militar por siglos.",
+        crypto_badge_2: "Criptografía Asimétrica",
+        crypto_2_title: "Intercambio de Claves Diffie-Hellman (1976)",
+        crypto_2_desc: "Creado por Whitfield Diffie y Martin Hellman, resolvió el gran dilema de la seguridad: cómo dos partes pueden acordar una clave secreta a través de un canal público e inseguro sin que ningún espía pueda descifrarla.",
+        crypto_2_fact: "<strong>Dato curioso:</strong> Basado en la dificultad matemática del logaritmo discreto, es la columna vertebral que protege todas las conexiones HTTPS, TLS, SSH y VPN en el mundo.",
+        crypto_badge_3: "Criptoanálisis Forense",
+        crypto_3_title: "Los Criptogramas del Asesino del Zodiaco (Z340 y Z408)",
+        crypto_3_desc: "Entre 1969 y 1974, el misterioso criminal envió 4 complejos criptogramas con símbolos de sustitución homófona y lecturas diagonales para desafiar a la policía y a los medios.",
+        crypto_3_fact: "<strong>Dato curioso:</strong> El cifrado Z340 permaneció indescifrable durante 51 años hasta diciembre de 2020, cuando un equipo internacional de programadores lo resolvió con software especializado.",
 
         project_title: "¿Tienes un proyecto en mente?",
         project_desc: "Colaboremos para crear sistemas web robustos, modelos inteligentes de IA y arquitecturas de datos optimizadas a tu medida.",
@@ -243,6 +299,8 @@ const translations = {
         nav_qualification: "Werdegang",
         nav_services: "Dienstleistungen",
         nav_portfolio: "Portfolio",
+        nav_hobbies: "Hobbys",
+        nav_crypto: "Kryptographie",
         nav_contact: "Kontakt",
 
         home_title: "Hallo, ich bin Jaime Gabriel",
@@ -276,6 +334,8 @@ const translations = {
         qual_edu_1_sub: "ESCOM — IPN",
         qual_edu_2_title: "Programmiertechniker",
         qual_edu_2_sub: "CECyT Nr. 9 \"Juan de Dios Bátiz\" — IPN",
+        qual_edu_3_title: "Sekundarschulbildung",
+        qual_edu_3_sub: "Secundaria Diurna Nr. 141 \"Guillermo González Camarena\"",
         qual_work_1_title: "Leiter Webentwicklung",
         qual_work_1_sub: "CONSECAL S.A. de C.V.",
         qual_work_1_date: "Mär 2024 - Mai 2026",
@@ -317,6 +377,30 @@ const translations = {
         portfolio_p2_desc: "Interaktives Web-Backend zur Berechnung des Risikos chronischer Krankheiten mit ID3-Entscheidungsbaum-Klassifikationsalgorithmen.",
         portfolio_p3_title: "CONSECAL Unternehmenswebseite & Abfrageportal",
         portfolio_p3_desc: "Komplette Neugestaltung und Implementierung von Website und internem Portal: 45% mehr Besucher und 20% schnellere Service-Reaktionszeiten.",
+
+        hobbies_title: "Hobbys & Interessen",
+        hobbies_subtitle: "Was ich in meiner Freizeit genieße",
+        hobby_1_title: "Fitnessstudio & Fitness",
+        hobby_1_desc: "Konsequentes Krafttraining, das Disziplin, mentale Ausdauer und eine gesunde Balance zur Softwareentwicklung fördert.",
+        hobby_2_title: "Kino & Storytelling",
+        hobby_2_desc: "Begeisterung für Filmkunst, komplexe Handlungen, Psychothriller und Science-Fiction, die kreatives Denken anregen.",
+        hobby_3_title: "Musik & Soundtracks",
+        hobby_3_desc: "Entdeckung vielfältiger Musikgenres, Ambient-Klanglandschaften und Instrumental-Soundtracks für tiefe Konzentration beim Programmieren.",
+
+        crypto_title: "Fakten zur Kryptographie",
+        crypto_subtitle: "Faszinierende Meilensteine der historischen und modernen Kryptographie",
+        crypto_badge_1: "Klassische Kryptographie",
+        crypto_1_title: "Die Cäsar-Verschlüsselung (Verschiebechiffre)",
+        crypto_1_desc: "Eine der ältesten dokumentierten Verschlüsselungsmethoden der Geschichte. Von Julius Cäsar im 1. Jh. v. Chr. genutzt, um militärische Depeschen durch Verschiebung der Buchstaben um eine feste Anzahl (meist 3) zu schützen.",
+        crypto_1_fact: "<strong>Wissenswerter Fakt:</strong> Obwohl heute durch Häufigkeitsanalyse leicht knackbar, begründete sie das Prinzip der monoalphabetischen Substitution für Jahrhunderte.",
+        crypto_badge_2: "Asymmetrische Kryptographie",
+        crypto_2_title: "Diffie-Hellman-Schlüsselaustausch (1976)",
+        crypto_2_desc: "Von Whitfield Diffie und Martin Hellman entwickelt, löste dieses Protokoll das Kernproblem: Wie zwei Parteien über einen unsicheren öffentlichen Kanal einen gemeinsamen geheimen Schlüssel vereinbaren können.",
+        crypto_2_fact: "<strong>Wissenswerter Fakt:</strong> Basierend auf dem diskreten Logarithmus sichert dieses Verfahren heute weltweit HTTPS-, TLS-, SSH- und VPN-Verbindungen.",
+        crypto_badge_3: "Forensische Kryptoanalyse",
+        crypto_3_title: "Die Zodiac-Killer-Kryptogramme (Z340 & Z408)",
+        crypto_3_desc: "Zwischen 1969 und 1974 versandte der Serienmörder 4 komplexe Kryptogramme mit homophoner Substitution und diagonalen Transpositionen, um Polizei und Presse herauszufordern.",
+        crypto_3_fact: "<strong>Wissenswerter Fakt:</strong> Die berüchtigte Z340-Chiffre blieb 51 Jahre lang ungelöst, bis ein internationales Programmiererteam sie im Dezember 2020 mit Spezialsoftware knackte.",
 
         project_title: "Haben Sie ein Projekt im Kopf?",
         project_desc: "Lassen Sie uns zusammenarbeiten, um robuste Websysteme, intelligente KI-Anwendungen und optimierte Datenbanklösungen zu entwickeln.",
@@ -435,13 +519,13 @@ navLink.forEach(n => n.addEventListener('click', linkAction));
 const skillsHeader = document.querySelectorAll('.skills__header');
 
 function toggleSkills() {
-    let itemClass = this.parentNode.className;
-
-    for (let i = 0; i < skillsHeader.length; i++) {
-        skillsHeader[i].parentNode.className = 'skills__content skills__close';
-    }
-    if (itemClass === 'skills__content skills__close') {
-        this.parentNode.className = 'skills__content skills__open';
+    const item = this.parentNode;
+    if (item.classList.contains('skills__open')) {
+        item.classList.remove('skills__open');
+        item.classList.add('skills__close');
+    } else {
+        item.classList.remove('skills__close');
+        item.classList.add('skills__open');
     }
 }
 
