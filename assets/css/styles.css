@@ -1261,12 +1261,85 @@ body.dark-theme .contact__status.error {
     transform: translateY(-.25rem);
 }
 
+/*==================== VISITOR COUNTER ====================*/
+.footer__visitor-container {
+    display: flex;
+    justify-content: center;
+    margin: var(--mb-2) 0 var(--mb-1);
+}
+
+.visitor__badge {
+    display: inline-flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, .08);
+    border: 1px solid rgba(255, 255, 255, .15);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: .5rem 1.25rem;
+    border-radius: 2rem;
+    gap: .6rem;
+    color: #fff;
+    font-size: var(--small-font-size);
+    font-weight: var(--font-medium);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .1);
+    transition: transform .3s ease, background-color .3s ease, border-color .3s ease;
+}
+
+.visitor__badge:hover {
+    transform: translateY(-2px);
+    background-color: rgba(255, 255, 255, .12);
+    border-color: var(--first-color-lighter);
+}
+
+.visitor__status-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #22c55e;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    box-shadow: 0 0 8px #22c55e;
+}
+
+.visitor__status-dot::after {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: rgba(34, 197, 94, .4);
+    animation: pulseLive 2s infinite ease-in-out;
+}
+
+@keyframes pulseLive {
+    0% { transform: scale(.6); opacity: 1; }
+    100% { transform: scale(1.6); opacity: 0; }
+}
+
+.visitor__icon {
+    font-size: 1.1rem;
+    color: var(--first-color-lighter);
+}
+
+.visitor__count {
+    font-weight: var(--font-semi-bold);
+    color: #fff;
+    letter-spacing: .5px;
+}
+
+.visitor__label {
+    color: rgba(255, 255, 255, .8);
+    font-size: var(--smaller-font-size);
+}
+
 .footer__copy {
     font-size: var(--smaller-font-size);
     text-align: center;
     color: #fff;
     opacity: .7;
-    margin-top: var(--mb-3);
+    margin-top: var(--mb-2);
 }
 
 /*========== SCROLL UP ==========*/

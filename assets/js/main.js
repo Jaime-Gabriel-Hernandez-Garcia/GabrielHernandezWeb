@@ -147,6 +147,7 @@ const translations = {
         contact_status_success: "Thank you! Your message has been sent successfully to Gabriel.",
         contact_status_error: "Oops! Could not send message. Please try again or reach out via WhatsApp/Email.",
         contact_status_cooldown: "Please wait before sending another message.",
+        visitor_label: "Total Visits",
 
         footer_copy: "All rights reserved."
     },
@@ -298,6 +299,7 @@ const translations = {
         contact_status_success: "¡Gracias! Tu mensaje ha sido enviado exitosamente a Gabriel.",
         contact_status_error: "¡Ups! No se pudo enviar el mensaje. Intenta nuevamente o contáctame por WhatsApp/Email.",
         contact_status_cooldown: "Por favor espera antes de enviar otro mensaje.",
+        visitor_label: "Visitas Totales",
 
         footer_copy: "Todos los derechos reservados."
     },
@@ -449,6 +451,7 @@ const translations = {
         contact_status_success: "Vielen Dank! Ihre Nachricht wurde erfolgreich an Gabriel gesendet.",
         contact_status_error: "Hoppla! Nachricht konnte nicht gesendet werden. Bitte per WhatsApp/E-Mail kontaktieren.",
         contact_status_cooldown: "Bitte warten Sie, bevor Sie eine weitere Nachricht senden.",
+        visitor_label: "Gesamtbesuche",
 
         footer_copy: "Alle Rechte vorbehalten."
     }
@@ -805,3 +808,62 @@ if (contactForm) {
         }
     });
 }
+
+/*==================== VISITOR COUNTER LOGIC ====================*/
+async function initVisitorCounter() {
+    const countEl = document.getElementById('visitor-count');
+    if (!countEl) return;
+
+    let currentCount = parseInt(safeStorage.getItem('local_visitor_count') || '142', 10);
+
+    try {
+        const res = await fetch('https://visitor-badge.laobi.icu/badge?page_id=Jaime-Gabriel-Hernandez-Garcia.GabrielHernandezWeb', {
+            cache: 'no-cache'
+        });
+        if (res.ok) {
+            const svgText = await res.text();
+            const matches = svgText.match(/<text[^>]*>(\d+)<\/text>/g);
+            if (matches && matches.length >= 2) {
+                const numMatch = matches[matches.length - 1].match(/(\d+)/);
+                if (numMatch) {
+                    currentCount = parseInt(numMatch[1], 10);
+                    safeStorage.setItem('local_visitor_count', currentCount.toString());
+                }
+            }
+        }
+    } catch (e) {
+        // Increment session fallback
+        try {
+            const hasVisited = sessionStorage.getItem('visited_session');
+            if (!hasVisited) {
+                currentCount += 1;
+                sessionStorage.setItem('visited_session', 'true');
+                safeStorage.setItem('local_visitor_count', currentCount.toString());
+            }
+        } catch (err) {
+            // Ignore session storage failure in private mode
+        }
+    }
+
+    animateCounter(countEl, currentCount);
+}
+
+function animateCounter(element, target) {
+    let start = 0;
+    const duration = 1200;
+    const startTime = performance.now();
+
+    function step(currentTime) {
+        const progress = Math.min((currentTime - startTime) / duration, 1);
+        const current = Math.floor(progress * target);
+        element.textContent = current.toLocaleString();
+        if (progress < 1) {
+            requestAnimationFrame(step);
+        } else {
+            element.textContent = target.toLocaleString();
+        }
+    }
+    requestAnimationFrame(step);
+}
+
+initVisitorCounter();
