@@ -454,6 +454,24 @@ const translations = {
     }
 };
 
+/*==================== SAFE STORAGE HELPER (MOBILE COMPATIBILITY) ====================*/
+const safeStorage = {
+    getItem: function(key) {
+        try {
+            return localStorage.getItem(key);
+        } catch (e) {
+            return null;
+        }
+    },
+    setItem: function(key, val) {
+        try {
+            localStorage.setItem(key, val);
+        } catch (e) {
+            // Storage blocked or quota exceeded in private mode
+        }
+    }
+};
+
 /*==================== LANGUAGE SWITCHER LOGIC ====================*/
 const langButtons = document.querySelectorAll('.lang__btn');
 
@@ -499,8 +517,8 @@ function setLanguage(lang) {
         }
     });
 
-    // Persist language
-    localStorage.setItem('selected-lang', lang);
+    // Persist language safely
+    safeStorage.setItem('selected-lang', lang);
 }
 
 langButtons.forEach(btn => {
@@ -511,7 +529,7 @@ langButtons.forEach(btn => {
 });
 
 // Load saved language on init
-const savedLang = localStorage.getItem('selected-lang') || 'en';
+const savedLang = safeStorage.getItem('selected-lang') || 'en';
 setLanguage(savedLang);
 
 /*==================== MENU SHOW Y HIDDEN ====================*/
@@ -680,10 +698,13 @@ window.addEventListener('scroll', scrollHeader);
 /*==================== SHOW SCROLL UP ====================*/ 
 function scrollUp() {
     const scrollUp = document.getElementById('scroll-up');
-    if (this.scrollY >= 560) {
-        scrollUp.classList.add('show-scroll');
-    } else {
-        scrollUp.classList.remove('show-scroll');
+    const scrollY = window.pageYOffset || window.scrollY || document.documentElement.scrollTop;
+    if (scrollUp) {
+        if (scrollY >= 560) {
+            scrollUp.classList.add('show-scroll');
+        } else {
+            scrollUp.classList.remove('show-scroll');
+        }
     }
 }
 window.addEventListener('scroll', scrollUp);
@@ -694,8 +715,8 @@ const darkTheme = 'dark-theme';
 const iconTheme = 'uil-sun';
 
 // Previously selected topic (if user selected)
-const selectedTheme = localStorage.getItem('selected-theme');
-const selectedIcon = localStorage.getItem('selected-icon');
+const selectedTheme = safeStorage.getItem('selected-theme');
+const selectedIcon = safeStorage.getItem('selected-icon');
 
 // Obtain current theme by validating dark-theme class
 const getCurrentTheme = () => document.body.classList.contains(darkTheme) ? 'dark' : 'light';
@@ -711,8 +732,8 @@ if (selectedTheme) {
 themeButton.addEventListener('click', () => {
     document.body.classList.toggle(darkTheme);
     themeButton.classList.toggle(iconTheme);
-    localStorage.setItem('selected-theme', getCurrentTheme());
-    localStorage.setItem('selected-icon', getCurrentIcon());
+    safeStorage.setItem('selected-theme', getCurrentTheme());
+    safeStorage.setItem('selected-icon', getCurrentIcon());
 });
 
 /*==================== SECURE CONTACT FORM HANDLING ====================*/
@@ -724,7 +745,7 @@ if (contactForm) {
     contactForm.addEventListener('submit', async function(e) {
         e.preventDefault();
 
-        const currentLang = localStorage.getItem('selected-lang') || 'en';
+        const currentLang = safeStorage.getItem('selected-lang') || 'en';
         const t = translations[currentLang] || translations.en;
 
         // 1. Honeypot check (Anti-bot trap)
@@ -738,7 +759,7 @@ if (contactForm) {
         }
 
         // 2. Rate limiting check (60-second cooldown)
-        const lastSubmitTime = localStorage.getItem('last_contact_submit');
+        const lastSubmitTime = safeStorage.getItem('last_contact_submit');
         const now = Date.now();
         if (lastSubmitTime && (now - parseInt(lastSubmitTime, 10)) < 60000) {
             const secondsLeft = Math.ceil((60000 - (now - parseInt(lastSubmitTime, 10))) / 1000);
@@ -769,7 +790,7 @@ if (contactForm) {
                 contactStatus.className = 'contact__status success';
                 contactStatus.textContent = t.contact_status_success;
                 contactForm.reset();
-                localStorage.setItem('last_contact_submit', Date.now().toString());
+                safeStorage.setItem('last_contact_submit', Date.now().toString());
             } else {
                 throw new Error('Server returned an error');
             }
