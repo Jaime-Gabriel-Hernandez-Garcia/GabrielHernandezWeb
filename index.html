@@ -1152,7 +1152,7 @@
                 </div>
             </div>
 
-            <!--==================== VISITOR COUNTER WIDGET ====================-->
+            <!--==================== VISITOR & GEO TELEMETRY WIDGET ====================-->
             <div class="footer__visitor-container">
                 <div class="visitor__badge" title="Live Visitor Counter">
                     <span class="visitor__status-dot"></span>
@@ -1160,12 +1160,34 @@
                     <span class="visitor__count" id="visitor-count">1</span>
                     <span class="visitor__label" data-i18n="visitor_label">Total Visits</span>
                 </div>
+                <div class="visitor__location-badge" id="visitor-location-badge" title="Live Geolocation Telemetry">
+                    <i class="uil uil-location-pin-alt visitor__loc-icon"></i>
+                    <span class="visitor__loc-label" data-i18n="visitor_loc_prefix">Current visit from:</span>
+                    <span class="visitor__loc-data" id="visitor-location-text">Detecting... 🛰️</span>
+                </div>
             </div>
 
             <p class="footer__copy">&#169; Jaime Gabriel Hernández García. <span data-i18n="footer_copy">All rights
                     reserved.</span></p>
         </div>
     </footer>
+
+    <!--==================== LIVE GEO TELEMETRY TOAST ====================-->
+    <aside class="geo-toast" id="geo-toast" role="status" aria-live="polite">
+        <div class="geo-toast__content">
+            <span class="geo-toast__pulse"></span>
+            <div class="geo-toast__info">
+                <span class="geo-toast__title" data-i18n="visitor_toast_title">🛰️ Live Telemetry</span>
+                <p class="geo-toast__text">
+                    <span data-i18n="visitor_toast_msg">Currently connected from</span>:
+                    <strong class="geo-toast__loc" id="geo-toast-loc">Detecting...</strong>
+                </p>
+            </div>
+            <button class="geo-toast__close" id="geo-toast-close" aria-label="Close telemetry alert">
+                <i class="uil uil-multiply"></i>
+            </button>
+        </div>
+    </aside>
 
     <!--==================== SCROLL TOP ====================-->
     <a href="#" class="scrollup" id="scroll-up" aria-label="Scroll to top">

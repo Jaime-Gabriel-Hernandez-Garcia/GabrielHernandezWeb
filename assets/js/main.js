@@ -148,6 +148,9 @@ const translations = {
         contact_status_error: "Oops! Could not send message. Please try again or reach out via WhatsApp/Email.",
         contact_status_cooldown: "Please wait before sending another message.",
         visitor_label: "Total Visits",
+        visitor_loc_prefix: "Current visit from:",
+        visitor_toast_title: "🛰️ Live Telemetry",
+        visitor_toast_msg: "Currently connected from",
 
         footer_copy: "All rights reserved."
     },
@@ -300,6 +303,9 @@ const translations = {
         contact_status_error: "¡Ups! No se pudo enviar el mensaje. Intenta nuevamente o contáctame por WhatsApp/Email.",
         contact_status_cooldown: "Por favor espera antes de enviar otro mensaje.",
         visitor_label: "Visitas Totales",
+        visitor_loc_prefix: "Visita actual desde:",
+        visitor_toast_title: "🛰️ Telemetría en Vivo",
+        visitor_toast_msg: "Conectado actualmente desde",
 
         footer_copy: "Todos los derechos reservados."
     },
@@ -452,6 +458,9 @@ const translations = {
         contact_status_error: "Hoppla! Nachricht konnte nicht gesendet werden. Bitte per WhatsApp/E-Mail kontaktieren.",
         contact_status_cooldown: "Bitte warten Sie, bevor Sie eine weitere Nachricht senden.",
         visitor_label: "Gesamtbesuche",
+        visitor_loc_prefix: "Aktueller Besuch aus:",
+        visitor_toast_title: "🛰️ Live-Telemetrie",
+        visitor_toast_msg: "Derzeit verbunden aus",
 
         footer_copy: "Alle Rechte vorbehalten."
     }
@@ -866,4 +875,75 @@ function animateCounter(element, target) {
     requestAnimationFrame(step);
 }
 
+/*==================== GEO TELEMETRY LOGIC ====================*/
+async function detectVisitorLocation() {
+    const locBadgeText = document.getElementById('visitor-location-text');
+    const toastEl = document.getElementById('geo-toast');
+    const toastLoc = document.getElementById('geo-toast-loc');
+    const toastClose = document.getElementById('geo-toast-close');
+
+    if (toastClose && toastEl) {
+        toastClose.addEventListener('click', () => {
+            toastEl.classList.remove('show');
+        });
+    }
+
+    let geoData = null;
+    const cachedGeo = safeStorage.getItem('geo_location_cache');
+
+    if (cachedGeo) {
+        try {
+            geoData = JSON.parse(cachedGeo);
+        } catch (e) {
+            geoData = null;
+        }
+    }
+
+    if (!geoData) {
+        try {
+            const res = await fetch('https://ipwho.is/', { cache: 'no-cache' });
+            if (res.ok) {
+                const data = await res.json();
+                if (data.success) {
+                    geoData = {
+                        city: data.city || data.region || 'Online',
+                        country: data.country || 'Global',
+                        flag: (data.flag && data.flag.emoji) ? data.flag.emoji : '🌍'
+                    };
+                    safeStorage.setItem('geo_location_cache', JSON.stringify(geoData));
+                }
+            }
+        } catch (e) {
+            // Geolocation fallback
+        }
+    }
+
+    if (!geoData) {
+        geoData = {
+            city: 'Ciudad de México',
+            country: 'México',
+            flag: '🇲🇽'
+        };
+    }
+
+    const formattedLoc = `${geoData.city}, ${geoData.country} ${geoData.flag}`;
+
+    // Update footer badge
+    if (locBadgeText) {
+        locBadgeText.textContent = formattedLoc;
+    }
+
+    // Update and display floating telemetry toast
+    if (toastLoc && toastEl) {
+        toastLoc.textContent = formattedLoc;
+        setTimeout(() => {
+            toastEl.classList.add('show');
+            setTimeout(() => {
+                toastEl.classList.remove('show');
+            }, 7000);
+        }, 1500);
+    }
+}
+
 initVisitorCounter();
+detectVisitorLocation();
