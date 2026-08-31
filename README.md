@@ -137,7 +137,7 @@ GabrielHernandezWeb/
 - **Institución:** Escuela Superior de Cómputo (ESCOM — IPN)
 - **Correo Electrónico:** [jaimegabrielhernandezgarcia@hotmail.com](mailto:jaimegabrielhernandezgarcia@hotmail.com)
 - **WhatsApp:** [+52 56 3608 4525](https://wa.me/525636084525)
-- **GitHub:** [@Gabo2204](https://github.com/Gabo2204)
+- **GitHub:** [@Jaime-Gabriel-Hernandez-Garcia](https://github.com/Jaime-Gabriel-Hernandez-Garcia)
 
 ---
 

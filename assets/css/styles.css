@@ -1167,6 +1167,46 @@ img {
     padding: .25rem .5rem .5rem 0;
 }
 
+.contact__status {
+    display: none;
+    padding: .75rem 1rem;
+    border-radius: .5rem;
+    font-size: var(--small-font-size);
+    font-weight: var(--font-medium);
+    margin-top: .5rem;
+}
+
+.contact__status.loading {
+    display: block;
+    background-color: var(--input-color);
+    color: var(--first-color);
+    border-left: 3px solid var(--first-color);
+}
+
+.contact__status.success {
+    display: block;
+    background-color: hsla(140, 60%, 92%, 1);
+    color: hsl(140, 60%, 25%);
+    border-left: 3px solid hsl(140, 60%, 40%);
+}
+
+.contact__status.error {
+    display: block;
+    background-color: hsla(0, 70%, 92%, 1);
+    color: hsl(0, 70%, 35%);
+    border-left: 3px solid hsl(0, 70%, 50%);
+}
+
+body.dark-theme .contact__status.success {
+    background-color: hsla(140, 60%, 20%, .5);
+    color: hsl(140, 60%, 75%);
+}
+
+body.dark-theme .contact__status.error {
+    background-color: hsla(0, 70%, 20%, .5);
+    color: hsl(0, 70%, 75%);
+}
+
 /*==================== FOOTER ====================*/
 .footer {
     padding-top: 2rem;

@@ -143,6 +143,10 @@ const translations = {
         contact_lbl_msg: "Message",
         contact_ph_msg: "Write your message here...",
         contact_btn_send: "Send Message",
+        contact_status_sending: "Sending message securely...",
+        contact_status_success: "Thank you! Your message has been sent successfully to Gabriel.",
+        contact_status_error: "Oops! Could not send message. Please try again or reach out via WhatsApp/Email.",
+        contact_status_cooldown: "Please wait before sending another message.",
 
         footer_copy: "All rights reserved."
     },
@@ -290,6 +294,10 @@ const translations = {
         contact_lbl_msg: "Mensaje",
         contact_ph_msg: "Escribe tu mensaje aquí...",
         contact_btn_send: "Enviar Mensaje",
+        contact_status_sending: "Enviando mensaje de forma segura...",
+        contact_status_success: "¡Gracias! Tu mensaje ha sido enviado exitosamente a Gabriel.",
+        contact_status_error: "¡Ups! No se pudo enviar el mensaje. Intenta nuevamente o contáctame por WhatsApp/Email.",
+        contact_status_cooldown: "Por favor espera antes de enviar otro mensaje.",
 
         footer_copy: "Todos los derechos reservados."
     },
@@ -437,6 +445,10 @@ const translations = {
         contact_lbl_msg: "Nachricht",
         contact_ph_msg: "Schreiben Sie Ihre Nachricht hier...",
         contact_btn_send: "Nachricht senden",
+        contact_status_sending: "Nachricht wird sicher gesendet...",
+        contact_status_success: "Vielen Dank! Ihre Nachricht wurde erfolgreich an Gabriel gesendet.",
+        contact_status_error: "Hoppla! Nachricht konnte nicht gesendet werden. Bitte per WhatsApp/E-Mail kontaktieren.",
+        contact_status_cooldown: "Bitte warten Sie, bevor Sie eine weitere Nachricht senden.",
 
         footer_copy: "Alle Rechte vorbehalten."
     }
@@ -444,6 +456,12 @@ const translations = {
 
 /*==================== LANGUAGE SWITCHER LOGIC ====================*/
 const langButtons = document.querySelectorAll('.lang__btn');
+
+const cvFiles = {
+    en: "assets/pdf/JGHG_CV_EN_2026.pdf",
+    es: "assets/pdf/JGHG_CV_ES_2026.pdf",
+    de: "assets/pdf/JGHG_CV_DE_2026.pdf"
+};
 
 function setLanguage(lang) {
     if (!translations[lang]) lang = 'en';
@@ -465,6 +483,12 @@ function setLanguage(lang) {
             el.setAttribute('placeholder', translations[lang][key]);
         }
     });
+
+    // Update CV download link based on selected language
+    const cvLink = document.getElementById('cv-download-link');
+    if (cvLink && cvFiles[lang]) {
+        cvLink.setAttribute('href', cvFiles[lang]);
+    }
 
     // Update active button state
     langButtons.forEach(btn => {
@@ -690,3 +714,73 @@ themeButton.addEventListener('click', () => {
     localStorage.setItem('selected-theme', getCurrentTheme());
     localStorage.setItem('selected-icon', getCurrentIcon());
 });
+
+/*==================== SECURE CONTACT FORM HANDLING ====================*/
+const contactForm = document.getElementById('contact-form'),
+      contactStatus = document.getElementById('contact-status'),
+      contactSubmitBtn = document.getElementById('contact-submit-btn');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const currentLang = localStorage.getItem('selected-lang') || 'en';
+        const t = translations[currentLang] || translations.en;
+
+        // 1. Honeypot check (Anti-bot trap)
+        const honeypot = contactForm.querySelector('input[name="_honey"]');
+        if (honeypot && honeypot.value.trim() !== '') {
+            // Silently discard bot submission
+            contactStatus.className = 'contact__status success';
+            contactStatus.textContent = t.contact_status_success;
+            contactForm.reset();
+            return;
+        }
+
+        // 2. Rate limiting check (60-second cooldown)
+        const lastSubmitTime = localStorage.getItem('last_contact_submit');
+        const now = Date.now();
+        if (lastSubmitTime && (now - parseInt(lastSubmitTime, 10)) < 60000) {
+            const secondsLeft = Math.ceil((60000 - (now - parseInt(lastSubmitTime, 10))) / 1000);
+            contactStatus.className = 'contact__status error';
+            contactStatus.textContent = `${t.contact_status_cooldown} (${secondsLeft}s)`;
+            return;
+        }
+
+        // 3. UI Loading state
+        contactStatus.className = 'contact__status loading';
+        contactStatus.textContent = t.contact_status_sending;
+        if (contactSubmitBtn) {
+            contactSubmitBtn.disabled = true;
+            contactSubmitBtn.style.opacity = '0.7';
+        }
+
+        try {
+            const formData = new FormData(contactForm);
+            const response = await fetch('https://formsubmit.co/ajax/jaimegabrielhernandezgarcia@hotmail.com', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json'
+                },
+                body: formData
+            });
+
+            if (response.ok) {
+                contactStatus.className = 'contact__status success';
+                contactStatus.textContent = t.contact_status_success;
+                contactForm.reset();
+                localStorage.setItem('last_contact_submit', Date.now().toString());
+            } else {
+                throw new Error('Server returned an error');
+            }
+        } catch (error) {
+            contactStatus.className = 'contact__status error';
+            contactStatus.textContent = t.contact_status_error;
+        } finally {
+            if (contactSubmitBtn) {
+                contactSubmitBtn.disabled = false;
+                contactSubmitBtn.style.opacity = '1';
+            }
+        }
+    });
+}
