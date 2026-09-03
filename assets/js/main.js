@@ -95,6 +95,11 @@ const translations = {
         hobby_2_desc: "Passionate about cinematic art, narrative structures, psychological thrillers, and science-fiction cinema that stimulate creative problem solving.",
         hobby_3_title: "Music & Soundtracks",
         hobby_3_desc: "Enjoying eclectic music genres, ambient soundscapes, and instrumental film scores that provide deep focus and inspiration during intense programming sessions.",
+        hobby_view_gallery: "View gallery",
+        insta_posts: "posts",
+        insta_scores: "Soundtracks",
+        music_curated_title: "Focus Soundtracks & Ambient",
+        music_curated_desc: "Hans Zimmer (Interstellar, Inception, Dune) • Ludwig Göransson (Oppenheimer) • Daft Punk (TRON: Legacy) • Synthwave & Classical Coding Ambient.",
 
         crypto_title: "Cryptography Facts",
         crypto_subtitle: "Fascinating historical & modern cryptographic milestones",
@@ -250,6 +255,11 @@ const translations = {
         hobby_2_desc: "Apasionado por el arte cinematográfico, la estructura de tramas complejas, thrillers psicológicos y ciencia ficción que impulsan la creatividad.",
         hobby_3_title: "Música y Soundtracks",
         hobby_3_desc: "Exploración de géneros musicales diversos, bandas sonoras de películas y música instrumental para máxima concentración al programar.",
+        hobby_view_gallery: "Ver galería",
+        insta_posts: "publicaciones",
+        insta_scores: "Soundtracks",
+        music_curated_title: "Soundtracks & Música de Enfoque",
+        music_curated_desc: "Hans Zimmer (Interstellar, Inception, Dune) • Ludwig Göransson (Oppenheimer) • Daft Punk (TRON: Legacy) • Synthwave y música instrumental para concentración extrema.",
 
         crypto_title: "Datos de Criptografía",
         crypto_subtitle: "Hitos fascinantes de la criptografía histórica y moderna",
@@ -405,6 +415,11 @@ const translations = {
         hobby_2_desc: "Begeisterung für Filmkunst, komplexe Handlungen, Psychothriller und Science-Fiction, die kreatives Denken anregen.",
         hobby_3_title: "Musik & Soundtracks",
         hobby_3_desc: "Entdeckung vielfältiger Musikgenres, Ambient-Klanglandschaften und Instrumental-Soundtracks für tiefe Konzentration beim Programmieren.",
+        hobby_view_gallery: "Galerie ansehen",
+        insta_posts: "Beiträge",
+        insta_scores: "Soundtracks",
+        music_curated_title: "Fokus-Soundtracks & Ambient",
+        music_curated_desc: "Hans Zimmer (Interstellar, Inception, Dune) • Ludwig Göransson (Oppenheimer) • Daft Punk (TRON: Legacy) • Synthwave & klassische Coding-Atmosphäre.",
 
         crypto_title: "Fakten zur Kryptographie",
         crypto_subtitle: "Faszinierende Meilensteine der historischen und modernen Kryptographie",
@@ -947,3 +962,75 @@ async function detectVisitorLocation() {
 
 initVisitorCounter();
 detectVisitorLocation();
+
+/*==================== HOBBIES INSTAGRAM MODALS & LIGHTBOX ====================*/
+const hobbyCards = document.querySelectorAll('.hobbies__content'),
+      hobbyModals = document.querySelectorAll('.hobbies__modal'),
+      hobbyModalCloses = document.querySelectorAll('.hobbies__modal-close'),
+      hobbyItems = document.querySelectorAll('.insta__item'),
+      hobbyLightbox = document.getElementById('hobby-lightbox'),
+      hobbyLightboxImg = document.getElementById('hobby-lightbox-img'),
+      hobbyLightboxClose = document.getElementById('hobby-lightbox-close');
+
+// Open modal upon clicking card
+hobbyCards.forEach(card => {
+    card.addEventListener('click', () => {
+        const targetSelector = card.getAttribute('data-modal-target');
+        const targetModal = document.querySelector(targetSelector);
+        if (targetModal) {
+            targetModal.classList.add('active-modal');
+        }
+    });
+});
+
+// Close modal with close button
+hobbyModalCloses.forEach(closeBtn => {
+    closeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        hobbyModals.forEach(modal => modal.classList.remove('active-modal'));
+    });
+});
+
+// Close modal clicking outside container
+hobbyModals.forEach(modal => {
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.remove('active-modal');
+        }
+    });
+});
+
+// Open Lightbox when clicking photo in grid
+hobbyItems.forEach(item => {
+    item.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const fullSrc = item.getAttribute('data-full') || item.querySelector('img').src;
+        if (hobbyLightbox && hobbyLightboxImg) {
+            hobbyLightboxImg.src = fullSrc;
+            hobbyLightbox.classList.add('active');
+        }
+    });
+});
+
+// Close Lightbox
+if (hobbyLightboxClose && hobbyLightbox) {
+    hobbyLightboxClose.addEventListener('click', () => {
+        hobbyLightbox.classList.remove('active');
+    });
+    hobbyLightbox.addEventListener('click', (e) => {
+        if (e.target === hobbyLightbox) {
+            hobbyLightbox.classList.remove('active');
+        }
+    });
+}
+
+// ESC key closes any open modal or lightbox
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        if (hobbyLightbox && hobbyLightbox.classList.contains('active')) {
+            hobbyLightbox.classList.remove('active');
+        } else {
+            hobbyModals.forEach(modal => modal.classList.remove('active-modal'));
+        }
+    }
+});

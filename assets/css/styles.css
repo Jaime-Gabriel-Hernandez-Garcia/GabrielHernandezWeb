@@ -891,12 +891,33 @@ img {
     transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
     border: 1px solid transparent;
     text-align: center;
+    cursor: pointer;
+    position: relative;
 }
 
 .hobbies__content:hover {
     transform: translateY(-.35rem);
     box-shadow: 0 8px 24px rgba(0, 0, 0, .15);
     border-color: var(--first-color-lighter);
+}
+
+.hobbies__button {
+    margin-top: 1.25rem;
+    display: inline-flex;
+    align-items: center;
+    column-gap: .25rem;
+    font-size: var(--smaller-font-size);
+    color: var(--first-color);
+    font-weight: var(--font-medium);
+    transition: color .3s ease;
+}
+
+.hobbies__content:hover .hobbies__button {
+    color: var(--first-color-alt);
+}
+
+.hobbies__content:hover .hobbies__button .button__icon {
+    transform: translateX(.25rem);
 }
 
 .hobbies__icon-box {
@@ -935,6 +956,278 @@ img {
     font-size: var(--small-font-size);
     color: var(--text-color);
     line-height: 1.6;
+}
+
+/*==================== INSTAGRAM-STYLE HOBBIES MODALS ====================*/
+.hobbies__modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .75);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    z-index: var(--z-modal);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .3s ease, visibility .3s ease;
+}
+
+.hobbies__modal.active-modal {
+    opacity: 1;
+    visibility: visible;
+}
+
+.hobbies__modal-content {
+    position: relative;
+    background-color: var(--container-color);
+    border-radius: 1rem;
+    max-width: 560px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, .25);
+    transform: scale(.9);
+    transition: transform .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.hobbies__modal.active-modal .hobbies__modal-content {
+    transform: scale(1);
+}
+
+/* Instagram Header */
+.insta__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--first-color-lighter);
+}
+
+.insta__profile {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+}
+
+.insta__avatar-ring {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    padding: 2.5px;
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.insta__avatar-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: var(--container-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: var(--first-color);
+}
+
+.insta__user-meta {
+    display: flex;
+    flex-direction: column;
+}
+
+.insta__username {
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+    font-size: var(--normal-font-size);
+    font-weight: var(--font-semi-bold);
+    color: var(--title-color);
+}
+
+.insta__verified {
+    color: #0095f6;
+    font-size: 1rem;
+}
+
+.insta__subtitle {
+    font-size: var(--smaller-font-size);
+    color: var(--text-color-light);
+}
+
+.insta__header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.insta__posts-badge {
+    font-size: var(--smaller-font-size);
+    font-weight: var(--font-medium);
+    color: var(--first-color);
+    background-color: var(--first-color-lighter);
+    padding: .25rem .6rem;
+    border-radius: 1rem;
+}
+
+body.dark-theme .insta__posts-badge {
+    background-color: hsla(var(--hue-color), 60%, 20%, .6);
+}
+
+.hobbies__modal-close {
+    font-size: 1.5rem;
+    color: var(--title-color);
+    cursor: pointer;
+    transition: color .3s ease, transform .2s ease;
+}
+
+.hobbies__modal-close:hover {
+    color: var(--first-color);
+    transform: rotate(90deg);
+}
+
+/* Instagram 3x3 Grid */
+.insta__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    padding: 10px;
+}
+
+.insta__item {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: var(--input-color);
+}
+
+.insta__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .4s ease;
+}
+
+.insta__item:hover .insta__img {
+    transform: scale(1.08);
+}
+
+.insta__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .75rem;
+    color: #fff;
+    font-size: var(--smaller-font-size);
+    font-weight: var(--font-semi-bold);
+    opacity: 0;
+    transition: opacity .3s ease;
+}
+
+.insta__item:hover .insta__overlay {
+    opacity: 1;
+}
+
+.insta__overlay span {
+    display: inline-flex;
+    align-items: center;
+    gap: .25rem;
+}
+
+/* Music Box */
+.insta__music-box {
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+}
+
+.insta__music-icon {
+    font-size: 3rem;
+    color: var(--first-color);
+    margin-bottom: 1rem;
+    display: inline-block;
+}
+
+.insta__music-title {
+    font-size: var(--h3-font-size);
+    margin-bottom: .5rem;
+    color: var(--title-color);
+}
+
+.insta__music-desc {
+    font-size: var(--normal-font-size);
+    color: var(--text-color);
+    line-height: 1.6;
+    max-width: 420px;
+    margin: 0 auto;
+}
+
+/* Lightbox */
+.hobby__lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .92);
+    z-index: calc(var(--z-modal) + 10);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .3s ease, visibility .3s ease;
+}
+
+.hobby__lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.hobby__lightbox-img {
+    max-width: 90vw;
+    max-height: 85vh;
+    border-radius: .5rem;
+    object-fit: contain;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, .5);
+    transform: scale(.95);
+    transition: transform .3s ease;
+}
+
+.hobby__lightbox.active .hobby__lightbox-img {
+    transform: scale(1);
+}
+
+.hobby__lightbox-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    font-size: 2.5rem;
+    color: #fff;
+    cursor: pointer;
+    transition: color .3s ease, transform .2s ease;
+}
+
+.hobby__lightbox-close:hover {
+    color: var(--first-color);
+    transform: rotate(90deg);
 }
 
 /*==================== CRYPTOGRAPHY ====================*/

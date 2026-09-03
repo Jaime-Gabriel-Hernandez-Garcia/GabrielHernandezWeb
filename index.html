@@ -779,7 +779,7 @@
 
             <div class="hobbies__container container grid">
                 <!-- Hobby 1: Gym -->
-                <div class="hobbies__content">
+                <div class="hobbies__content" data-modal-target="#hobby-modal-gym">
                     <div class="hobbies__icon-box">
                         <i class="uil uil-dumbbell hobbies__icon"></i>
                     </div>
@@ -788,10 +788,14 @@
                         Dedicated strength training and workout routines that foster discipline, consistency, mental
                         resilience, and a healthy balance with software engineering.
                     </p>
+                    <span class="button button--flex button--small button--link hobbies__button">
+                        <span data-i18n="hobby_view_gallery">View gallery</span>
+                        <i class="uil uil-arrow-right button__icon"></i>
+                    </span>
                 </div>
 
                 <!-- Hobby 2: Cinema -->
-                <div class="hobbies__content">
+                <div class="hobbies__content" data-modal-target="#hobby-modal-cine">
                     <div class="hobbies__icon-box">
                         <i class="uil uil-film hobbies__icon"></i>
                     </div>
@@ -800,10 +804,14 @@
                         Passionate about cinematic art, narrative structures, psychological thrillers, and
                         science-fiction cinema that stimulate creative problem solving.
                     </p>
+                    <span class="button button--flex button--small button--link hobbies__button">
+                        <span data-i18n="hobby_view_gallery">View gallery</span>
+                        <i class="uil uil-arrow-right button__icon"></i>
+                    </span>
                 </div>
 
                 <!-- Hobby 3: Music -->
-                <div class="hobbies__content">
+                <div class="hobbies__content" data-modal-target="#hobby-modal-music">
                     <div class="hobbies__icon-box">
                         <i class="uil uil-music hobbies__icon"></i>
                     </div>
@@ -812,7 +820,199 @@
                         Enjoying eclectic music genres, ambient soundscapes, and instrumental film scores that provide
                         deep focus and inspiration during intense programming sessions.
                     </p>
+                    <span class="button button--flex button--small button--link hobbies__button">
+                        <span data-i18n="hobby_view_gallery">View gallery</span>
+                        <i class="uil uil-arrow-right button__icon"></i>
+                    </span>
                 </div>
+            </div>
+
+            <!--==================== HOBBY MODALS (INSTAGRAM-STYLE) ====================-->
+            <!-- Modal 1: Gym -->
+            <div class="hobbies__modal" id="hobby-modal-gym" role="dialog" aria-modal="true">
+                <div class="hobbies__modal-content">
+                    <div class="insta__header">
+                        <div class="insta__profile">
+                            <div class="insta__avatar-ring">
+                                <div class="insta__avatar-inner">
+                                    <i class="uil uil-dumbbell"></i>
+                                </div>
+                            </div>
+                            <div class="insta__user-meta">
+                                <div class="insta__username">
+                                    <span>gabriel.hernandez</span>
+                                    <i class="uil uil-check-circle insta__verified" title="Verified"></i>
+                                </div>
+                                <span class="insta__subtitle" data-i18n="hobby_1_title">Gym & Fitness</span>
+                            </div>
+                        </div>
+                        <div class="insta__header-actions">
+                            <span class="insta__posts-badge">5 <span data-i18n="insta_posts">posts</span></span>
+                            <i class="uil uil-multiply hobbies__modal-close" aria-label="Close modal"></i>
+                        </div>
+                    </div>
+
+                    <div class="insta__grid">
+                        <div class="insta__item" data-full="assets/img/hobbie_gym/gym1.jpg">
+                            <img src="assets/img/hobbie_gym/gym1.jpg" alt="Gym & Fitness Photo 1" class="insta__img" loading="lazy">
+                            <div class="insta__overlay">
+                                <span><i class="uil uil-heart"></i> 142</span>
+                                <span><i class="uil uil-comment"></i> 18</span>
+                            </div>
+                        </div>
+                        <div class="insta__item" data-full="assets/img/hobbie_gym/gym2.jpg">
+                            <img src="assets/img/hobbie_gym/gym2.jpg" alt="Gym & Fitness Photo 2" class="insta__img" loading="lazy">
+                            <div class="insta__overlay">
+                                <span><i class="uil uil-heart"></i> 189</span>
+                                <span><i class="uil uil-comment"></i> 24</span>
+                            </div>
+                        </div>
+                        <div class="insta__item" data-full="assets/img/hobbie_gym/gym3.jpg">
+                            <img src="assets/img/hobbie_gym/gym3.jpg" alt="Gym & Fitness Photo 3" class="insta__img" loading="lazy">
+                            <div class="insta__overlay">
+                                <span><i class="uil uil-heart"></i> 210</span>
+                                <span><i class="uil uil-comment"></i> 31</span>
+                            </div>
+                        </div>
+                        <div class="insta__item" data-full="assets/img/hobbie_gym/gym4.jpg">
+                            <img src="assets/img/hobbie_gym/gym4.jpg" alt="Gym & Fitness Photo 4" class="insta__img" loading="lazy">
+                            <div class="insta__overlay">
+                                <span><i class="uil uil-heart"></i> 175</span>
+                                <span><i class="uil uil-comment"></i> 19</span>
+                            </div>
+                        </div>
+                        <div class="insta__item" data-full="assets/img/hobbie_gym/gym5.jpg">
+                            <img src="assets/img/hobbie_gym/gym5.jpg" alt="Gym & Fitness Photo 5" class="insta__img" loading="lazy">
+                            <div class="insta__overlay">
+                                <span><i class="uil uil-heart"></i> 235</span>
+                                <span><i class="uil uil-comment"></i> 28</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal 2: Cinema -->
+            <div class="hobbies__modal" id="hobby-modal-cine" role="dialog" aria-modal="true">
+                <div class="hobbies__modal-content">
+                    <div class="insta__header">
+                        <div class="insta__profile">
+                            <div class="insta__avatar-ring">
+                                <div class="insta__avatar-inner">
+                                    <i class="uil uil-film"></i>
+                                </div>
+                            </div>
+                            <div class="insta__user-meta">
+                                <div class="insta__username">
+                                    <span>gabriel.hernandez</span>
+                                    <i class="uil uil-check-circle insta__verified" title="Verified"></i>
+                                </div>
+                                <span class="insta__subtitle" data-i18n="hobby_2_title">Cinema & Storytelling</span>
+                            </div>
+                        </div>
+                        <div class="insta__header-actions">
+                            <span class="insta__posts-badge">8 <span data-i18n="insta_posts">posts</span></span>
+                            <i class="uil uil-multiply hobbies__modal-close" aria-label="Close modal"></i>
+                        </div>
+                    </div>
+
+                    <div class="insta__grid">
+                        <div class="insta__item" data-full="assets/img/hobbie_cine/cine1.jpeg">
+                            <img src="assets/img/hobbie_cine/cine1.jpeg" alt="Cinema Photo 1" class="insta__img" loading="lazy">
+                            <div class="insta__overlay">
+                                <span><i class="uil uil-heart"></i> 164</span>
+                                <span><i class="uil uil-comment"></i> 15</span>
+                            </div>
+                        </div>
+                        <div class="insta__item" data-full="assets/img/hobbie_cine/cine2.jpeg">
+                            <img src="assets/img/hobbie_cine/cine2.jpeg" alt="Cinema Photo 2" class="insta__img" loading="lazy">
+                            <div class="insta__overlay">
+                                <span><i class="uil uil-heart"></i> 198</span>
+                                <span><i class="uil uil-comment"></i> 22</span>
+                            </div>
+                        </div>
+                        <div class="insta__item" data-full="assets/img/hobbie_cine/cine3.jpeg">
+                            <img src="assets/img/hobbie_cine/cine3.jpeg" alt="Cinema Photo 3" class="insta__img" loading="lazy">
+                            <div class="insta__overlay">
+                                <span><i class="uil uil-heart"></i> 143</span>
+                                <span><i class="uil uil-comment"></i> 12</span>
+                            </div>
+                        </div>
+                        <div class="insta__item" data-full="assets/img/hobbie_cine/cine4.jpeg">
+                            <img src="assets/img/hobbie_cine/cine4.jpeg" alt="Cinema Photo 4" class="insta__img" loading="lazy">
+                            <div class="insta__overlay">
+                                <span><i class="uil uil-heart"></i> 215</span>
+                                <span><i class="uil uil-comment"></i> 29</span>
+                            </div>
+                        </div>
+                        <div class="insta__item" data-full="assets/img/hobbie_cine/cine5.jpeg">
+                            <img src="assets/img/hobbie_cine/cine5.jpeg" alt="Cinema Photo 5" class="insta__img" loading="lazy">
+                            <div class="insta__overlay">
+                                <span><i class="uil uil-heart"></i> 180</span>
+                                <span><i class="uil uil-comment"></i> 17</span>
+                            </div>
+                        </div>
+                        <div class="insta__item" data-full="assets/img/hobbie_cine/cine6.jpeg">
+                            <img src="assets/img/hobbie_cine/cine6.jpeg" alt="Cinema Photo 6" class="insta__img" loading="lazy">
+                            <div class="insta__overlay">
+                                <span><i class="uil uil-heart"></i> 222</span>
+                                <span><i class="uil uil-comment"></i> 34</span>
+                            </div>
+                        </div>
+                        <div class="insta__item" data-full="assets/img/hobbie_cine/cine7.jpg">
+                            <img src="assets/img/hobbie_cine/cine7.jpg" alt="Cinema Photo 7" class="insta__img" loading="lazy">
+                            <div class="insta__overlay">
+                                <span><i class="uil uil-heart"></i> 256</span>
+                                <span><i class="uil uil-comment"></i> 40</span>
+                            </div>
+                        </div>
+                        <div class="insta__item" data-full="assets/img/hobbie_cine/cine8.jpg">
+                            <img src="assets/img/hobbie_cine/cine8.jpg" alt="Cinema Photo 8" class="insta__img" loading="lazy">
+                            <div class="insta__overlay">
+                                <span><i class="uil uil-heart"></i> 289</span>
+                                <span><i class="uil uil-comment"></i> 45</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal 3: Music -->
+            <div class="hobbies__modal" id="hobby-modal-music" role="dialog" aria-modal="true">
+                <div class="hobbies__modal-content">
+                    <div class="insta__header">
+                        <div class="insta__profile">
+                            <div class="insta__avatar-ring">
+                                <div class="insta__avatar-inner">
+                                    <i class="uil uil-music"></i>
+                                </div>
+                            </div>
+                            <div class="insta__user-meta">
+                                <div class="insta__username">
+                                    <span>gabriel.hernandez</span>
+                                    <i class="uil uil-check-circle insta__verified" title="Verified"></i>
+                                </div>
+                                <span class="insta__subtitle" data-i18n="hobby_3_title">Music & Soundtracks</span>
+                            </div>
+                        </div>
+                        <div class="insta__header-actions">
+                            <span class="insta__posts-badge" data-i18n="insta_scores">Soundtracks</span>
+                            <i class="uil uil-multiply hobbies__modal-close" aria-label="Close modal"></i>
+                        </div>
+                    </div>
+
+                    <div class="insta__music-box">
+                        <i class="uil uil-headphones-alt insta__music-icon"></i>
+                        <h4 class="insta__music-title" data-i18n="music_curated_title">Focus Soundtracks & Ambient</h4>
+                        <p class="insta__music-desc" data-i18n="music_curated_desc">Hans Zimmer (Interstellar, Inception, Dune) • Ludwig Göransson (Oppenheimer) • Daft Punk (TRON: Legacy) • Synthwave & Classical Coding Ambient.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!--==================== LIGHTBOX EXPANDER ====================-->
+            <div class="hobby__lightbox" id="hobby-lightbox">
+                <i class="uil uil-multiply hobby__lightbox-close" id="hobby-lightbox-close"></i>
+                <img src="" alt="Enlarged Hobby Photo" class="hobby__lightbox-img" id="hobby-lightbox-img">
             </div>
         </section>
 
