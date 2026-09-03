@@ -978,16 +978,30 @@ hobbyCards.forEach(card => {
         const targetSelector = card.getAttribute('data-modal-target');
         const targetModal = document.querySelector(targetSelector);
         if (targetModal) {
-            targetModal.classList.add('active-modal');
+            targetModal.style.display = 'flex';
+            setTimeout(() => {
+                targetModal.classList.add('active-modal');
+            }, 10);
         }
     });
 });
+
+function closeAllHobbyModals() {
+    hobbyModals.forEach(modal => {
+        modal.classList.remove('active-modal');
+        setTimeout(() => {
+            if (!modal.classList.contains('active-modal')) {
+                modal.style.display = 'none';
+            }
+        }, 300);
+    });
+}
 
 // Close modal with close button
 hobbyModalCloses.forEach(closeBtn => {
     closeBtn.addEventListener('click', (e) => {
         e.stopPropagation();
-        hobbyModals.forEach(modal => modal.classList.remove('active-modal'));
+        closeAllHobbyModals();
     });
 });
 
@@ -995,7 +1009,7 @@ hobbyModalCloses.forEach(closeBtn => {
 hobbyModals.forEach(modal => {
     modal.addEventListener('click', (e) => {
         if (e.target === modal) {
-            modal.classList.remove('active-modal');
+            closeAllHobbyModals();
         }
     });
 });
@@ -1007,19 +1021,31 @@ hobbyItems.forEach(item => {
         const fullSrc = item.getAttribute('data-full') || item.querySelector('img').src;
         if (hobbyLightbox && hobbyLightboxImg) {
             hobbyLightboxImg.src = fullSrc;
-            hobbyLightbox.classList.add('active');
+            hobbyLightbox.style.display = 'flex';
+            setTimeout(() => {
+                hobbyLightbox.classList.add('active');
+            }, 10);
         }
     });
 });
 
 // Close Lightbox
-if (hobbyLightboxClose && hobbyLightbox) {
-    hobbyLightboxClose.addEventListener('click', () => {
+function closeLightbox() {
+    if (hobbyLightbox) {
         hobbyLightbox.classList.remove('active');
-    });
+        setTimeout(() => {
+            if (!hobbyLightbox.classList.contains('active')) {
+                hobbyLightbox.style.display = 'none';
+            }
+        }, 300);
+    }
+}
+
+if (hobbyLightboxClose && hobbyLightbox) {
+    hobbyLightboxClose.addEventListener('click', closeLightbox);
     hobbyLightbox.addEventListener('click', (e) => {
         if (e.target === hobbyLightbox) {
-            hobbyLightbox.classList.remove('active');
+            closeLightbox();
         }
     });
 }
@@ -1028,9 +1054,9 @@ if (hobbyLightboxClose && hobbyLightbox) {
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
         if (hobbyLightbox && hobbyLightbox.classList.contains('active')) {
-            hobbyLightbox.classList.remove('active');
+            closeLightbox();
         } else {
-            hobbyModals.forEach(modal => modal.classList.remove('active-modal'));
+            closeAllHobbyModals();
         }
     }
 });
