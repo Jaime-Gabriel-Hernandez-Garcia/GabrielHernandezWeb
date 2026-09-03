@@ -1374,6 +1374,7 @@ body.dark-theme .insta__posts-badge {
 .project__img {
     width: 232px;
     justify-self: center;
+    align-self: flex-end;
 }
 
 /*==================== TESTIMONIAL ====================*/
